@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>報修表單</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+
+</head>
+<style>
+    body {
+        background-color: #f15b5b !important;
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+    
+    .content-wrapper {
+        background-color: white;
+        margin-top: 30px;
+        border-radius: 6px;
+    }
+    /*----------------------------------------------*/
+    
+    .body-scroll {
+        overflow: hidden;
+        padding-right: 16px;
+    }
+    
+    /* ---------------------------add的添加照片CSS---------------------------------- */
+    
+    .img-uploader {
+        width: 100px;
+        height: 100px;
+        border-radius: 5px;
+        position: absolute;
+        top: 8px;
+        margin-left: 30px;
+        /* Full height */
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    
+    .img-uploader button {
+        padding: 5px 8px 5px 8px;
+        color: white;
+        font-size: 15px;
+        background-color: rgba(39, 38, 38, 0.5) !important;
+        border: none;
+        border-radius: 50%;
+        outline: none;
+        cursor: pointer;
+    }
+    
+    .img-uploader label {
+        color: black;
+        font-size: 20px;
+        position: absolute;
+        right: -2px;
+        bottom: 0px;
+        margin-bottom: 3px;
+        margin-right: 5px;
+    }
+    
+    .drop-zone {
+        max-width: 500px;
+        min-height: 500px;
+        padding: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-family: "Quicksand", sans-serif;
+        font-weight: 500;
+        font-size: 20px;
+        color: #cccccc;
+        border: 4px dashed #009578;
+        border-radius: 10px;
+    }
+    
+    .drop-zone__input {
+        display: none;
+    }
+    
+    #click-here {
+        color: red;
+    }
+    
+    #click-here:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    
+</style>
+
+<body id="body">
+
+    <nav class="navbar navbar-light" style="background-color: #047cc2;">
+        <div class="container">
+            <a>
+                <div>
+                    <div style="color:white; font-size:22px; position:absolute; top:13px; margin-left:8px; display:inline-block;">報修系統</div>
+
+                </div>
+            </a>
+            <div style="width:200px">
+                <div class="dropdown" style="float:right;">
+
+                    <a class="btn dropdown-toggle text-light" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:20px; padding-top:0px; padding-bottom:0px;"></a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="margin-top:12px;">
+                        <a class="dropdown-item">登出</a>
+                    </div>
+                </div>
+                <span class="text-light" style="float:right; margin-top:3px;">用戶: XXX  </span>
+            </div>
+        </div>
+    </nav>
+    <div class="row">
+        <div class="col-2 ml-3 mt-3">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link nav-item-active text-light">報修資料表</a>
+            </ul>
+        </div>
+        <div class="col-8">
+           
+          
+            <!-- 創建卡片 -->
+            <div class="container pt-3">
+                <div class="card">
+                    <div class="card-header navbar">
+                        <div class="">
+                            報修表單
+                            <button type="button" class="btn btn-success ml-3" data-toggle="modal" data-target="#add-executive-modal">新增資料</button>
+                        </div>
+                        <form class="form-inline ">
+                            <input class="form-control mr-sm-2" type="text" placeholder="報修單號" aria-label="Search" id="search-executive-id" name="照護人員ID">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="search-submit" data-toggle="modal">Search</button>
+                        </form>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped rwd-table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">報修單號</th>
+                                    <th scope="col">報修人姓名</th>
+                                    <th scope="col">損壞區域</th>
+                                    <th scope="col">報修日期</th>
+                                    <th scope="col">損毀狀態</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>報修單號</td>
+                                    <td>報修人姓名</td>
+                                    <td>損壞區域</td>
+                                    <td>報修日期</td>
+                                    <td>損毀狀態</td>
+                                
+                                </tr>
+    
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="add-executive-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="overflow-y: scroll;">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">新增資料</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group" id="exe_1">
+                                    <label for="exampleInputEmail1">報修單號</label><br>
+                                    <input type="input" class="form-control" id="報修單號" aria-describedby="emailHelp" placeholder="ex.F130258693" style="width:70%; display:inline-block !important;" required>
+                                    <div style="display:inline-block !important;">
+                                        <div class="img-uploader" id="exe_photo">
+                                            <a href="#" data-target="#modalIMG" data-toggle="modal" class="color-gray-darker c6 td-hover-none">
+                                                <img class="header-preview" src="https://dummyimage.com/100X100/d4cdd4/09090a.png&text=upload+image" style="width: 100px; height: 100px; border-radius: 12px; cursor: zoom-in;">
+                                            </a>
+                                            <label>
+                                            
+                                               <button type="button" data-toggle="modal" data-target="#header-modal"><i class="fas fa-camera" ></i></button>
+                                               
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" id="exe_2">
+                                    <label for="報修人姓名">報修人姓名</label>
+                                    <input type="input" class="form-control" id="報修人姓名" placeholder="ex.王大明" required>
+                                </div>
+                                <div class="form-group" id="form-group5">
+                                    <label for="exampleInputPassword1">損壞區域</label>
+                                    <input type="input" class="form-control" id="損壞區域" placeholder="ex.ST430" required>
+                                </div>
+                                <div class="form-group" id="form-group5">
+                                    <label for="exampleInputPassword1">報修日期</label>
+                                    <input type="input" class="form-control" id="報修日期" placeholder="ex.2021-12-31" required>
+                                </div>
+                                <div class="form-group" id="form-group5">
+                                    <label for="exampleInputPassword1">損壞狀態</label>
+                                    <input type="input" class="form-control" id="損壞狀態" placeholder="ex.門把損壞" required>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary" id="form-submit">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           <div class="col-2"></div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js " integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut " crossorigin="anonymous "></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js " integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k " crossorigin="anonymous "></script>
+</body>
+
+</html>
